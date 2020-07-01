@@ -4,6 +4,7 @@ function createLine(prefix, name) {
 
 function createPrefix(stackLevel, isLastFolderElement) {
   const spaces = stackLevel > 1 ? "   ".repeat(stackLevel - 1).slice(0, -1) : "";
+  //   const spaces = stackLevel > 1 ? "  |".repeat(stackLevel - 1).slice(0, -1) : "";
   const firstElement = stackLevel >= 2 ? "|" : "";
   const lastElement = isLastFolderElement ? "└──" : "├──";
   return `${firstElement}${spaces}${lastElement}`;
