@@ -45,7 +45,7 @@ const readFolder = async (parentPath, name) => {
 };
 
 const start = async function () {
-  const folders = await readFolder("./", "foldersReader");
+  const folders = await readFolder("/", "Downloads");
   outputFoldersInConsole(folders);
 };
 
