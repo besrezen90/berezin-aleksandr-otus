@@ -1,18 +1,3 @@
-// const data = {
-//   name: "root",
-//   items: [
-//     {
-//       name: "folder_1",
-//       items: [
-//         { name: "folder_1_1" },
-//         { name: "folder_1_2", items: [{ name: "folder_1_2_1", items: [{ name: "folder_1_2_1_1" }] }] },
-//       ],
-//     },
-//     { name: "folder_2", items: [{ name: "folder_2_1" }] },
-//     { name: "folder_3" },
-//   ],
-// };
-
 function createLine(prefix, name) {
   console.log(`${prefix}${name}`);
 }
@@ -57,6 +42,21 @@ const createFolders = function (obj, maxStack, stack, isLastFolderElement) {
   }
 };
 
+/**
+ * @typedef Folders - {
+ *  name: string;
+ *  items?: Folders[]
+ * }
+ * @type {object}
+ * @property {string} name - name folder.
+ * @property {Folders[]} [items] - items in current folder.
+ * @param {Folders} folders
+ */
+
+const outputFoldersInConsole = function (folders) {
+  createFolders(folders);
+};
+
 module.exports = {
-  createFolders,
+  outputFoldersInConsole,
 };

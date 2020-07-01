@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const util = require("util");
-const { createFolders } = require("../foldersCreator");
+const { outputFoldersInConsole } = require("../foldersCreator");
 
 /* 
 FIXME: добавить путь из аргументов
@@ -44,8 +44,8 @@ const readFolder = async (parentPath, name) => {
 };
 
 const start = async function () {
-  const data = await readFolder("./", "foldersReader");
-  createFolders(data);
+  const folders = await readFolder("./", "foldersReader");
+  outputFoldersInConsole(folders);
 };
 
 start();
