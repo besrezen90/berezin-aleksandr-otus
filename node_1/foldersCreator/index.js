@@ -1,28 +1,28 @@
-const data = {
-  name: "root",
-  items: [
-    {
-      name: "folder_1",
-      items: [
-        { name: "folder_1_1" },
-        { name: "folder_1_2", items: [{ name: "folder_1_2_1", items: [{ name: "folder_1_2_1_1" }] }] },
-      ],
-    },
-    { name: "folder_2", items: [{ name: "folder_2_1" }] },
-    { name: "folder_3" },
-  ],
-};
+// const data = {
+//   name: "root",
+//   items: [
+//     {
+//       name: "folder_1",
+//       items: [
+//         { name: "folder_1_1" },
+//         { name: "folder_1_2", items: [{ name: "folder_1_2_1", items: [{ name: "folder_1_2_1_1" }] }] },
+//       ],
+//     },
+//     { name: "folder_2", items: [{ name: "folder_2_1" }] },
+//     { name: "folder_3" },
+//   ],
+// };
 
-const createLine = (prefix, name) => {
+function createLine(prefix, name) {
   console.log(`${prefix}${name}`);
-};
+}
 
-const createPrefix = (stackLevel, isLastFolderElement) => {
+function createPrefix(stackLevel, isLastFolderElement) {
   const spaces = stackLevel > 1 ? "   ".repeat(stackLevel - 1).slice(0, -1) : "";
   const firstElement = stackLevel >= 2 ? "|" : "";
   const lastElement = isLastFolderElement ? "└──" : "├──";
   return `${firstElement}${spaces}${lastElement}`;
-};
+}
 
 /**
  * @typedef Folders - {
@@ -38,7 +38,7 @@ const createPrefix = (stackLevel, isLastFolderElement) => {
  * @param {boolean} [isLastFolderElement] if it is last element in folder isLastFolderElement = true
  */
 
-const createFolders = (obj, maxStack, stack, isLastFolderElement) => {
+const createFolders = function (obj, maxStack, stack, isLastFolderElement) {
   const { name, items } = obj;
   const localStack = stack || 0;
 
@@ -57,6 +57,6 @@ const createFolders = (obj, maxStack, stack, isLastFolderElement) => {
   }
 };
 
-createFolders(data);
-
-module.export = createFolders;
+module.exports = {
+  createFolders,
+};
