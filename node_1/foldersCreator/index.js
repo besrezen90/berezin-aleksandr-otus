@@ -1,13 +1,12 @@
-function createLine(prefix, name) {
-  console.log(`${prefix}${name}`);
-}
-
-function createPrefix(stackLevel, isLastFolderElement) {
-  const spaces = stackLevel > 1 ? "   ".repeat(stackLevel - 1).slice(0, -1) : "";
-  const firstElement = stackLevel >= 2 ? "|" : "";
-  const lastElement = isLastFolderElement ? "└──" : "├──";
-  return `${firstElement}${spaces}${lastElement}`;
-}
+const createPrefix = (isLastFolderElement, parentPrefix) => {
+  if (!parentPrefix) {
+    return isLastFolderElement ? "└──" : "|──";
+  } else {
+    const regex = /─|└/gi;
+    const newPrefix = parentPrefix.replace(regex, " ");
+    return `${newPrefix}${isLastFolderElement ? "└──" : "|──"}`;
+  }
+};
 
 /**
  * @typedef Folders - {
@@ -18,26 +17,26 @@ function createPrefix(stackLevel, isLastFolderElement) {
  * @property {string} name - name folder.
  * @property {Folders[]} [items] - items in current folder.
  * @param {Folders} obj
- * @param {number} [maxStack]  max stack folders from render
- * @param {number} [stack]  current stack folder
+ * @param {boolean} [isNotFirstElement] if it is current folder isNotFirstElement = false
  * @param {boolean} [isLastFolderElement] if it is last element in folder isLastFolderElement = true
+ * @param {string} [parentPrefix] prefix for last element
  */
 
-const createFolders = function (obj, maxStack, stack, isLastFolderElement) {
+const createFolders = function (obj, isNotFirstElement, isLastFolderElement, parentPrefix) {
   const { name, items } = obj;
-  const localStack = stack || 0;
 
-  if (maxStack && maxStack === stack) return;
+  let newPrefix;
 
-  if (!localStack) {
+  if (!isNotFirstElement) {
     console.log(`${name}`);
   } else {
-    createLine(createPrefix(localStack, isLastFolderElement), name);
+    newPrefix = createPrefix(isLastFolderElement, parentPrefix);
+    console.log(`${newPrefix}${name}`);
   }
 
   if (items && items.length) {
     items.forEach((item, id, parentArray) => {
-      createFolders(item, maxStack, localStack + 1, !parentArray[id + 1]);
+      createFolders(item, true, !parentArray[id + 1], newPrefix);
     });
   }
 };
