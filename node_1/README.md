@@ -18,5 +18,5 @@ $ tree -p <path> -d <depth>
 
 ## Параметры
 
-1. '-p, --path <path>', 'Путь до целевой папки (string, required)'
-2. '-d, --depth <depth>', 'Опция глубины показа (number, required)'
+1. -p, --path: Путь до целевой папки (string, required)
+2. -d, --depth: Опция глубины показа (number, required)
