@@ -1,15 +1,22 @@
 # About
 
-That is great when a homework contains the `README` file which contains some / full description of the done homework
+Утилита tree для удобного показа структуры файлов директории.
 
 # Description
 
-It might include an original description of a task
+## Установка:
 
-# How to
+```sh
+$ npm install -g
+```
 
-It might include `HOW TO` section with a description how to run code
+## Запуск:
 
-# Notes
+```sh
+$ tree -p <path> -d <depth>
+```
 
-It might include `NOTES` section with additional author's thoughts on the task
+## Параметры
+
+1. '-p, --path <path>', 'Путь до целевой папки (string, required)'
+2. '-d, --depth <depth>', 'Опция глубины показа (number, required)'
