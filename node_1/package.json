@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cowboy": "0.0.5"
+    "cowboy": "0.0.5",
+    "yargs": "^15.4.0"
   }
 }
