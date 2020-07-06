@@ -1,12 +1,4 @@
-const createPrefix = (isLastFolderElement, parentPrefix) => {
-  if (!parentPrefix) {
-    return isLastFolderElement ? "└──" : "|──";
-  } else {
-    const regex = /─|└/gi;
-    const newPrefix = parentPrefix.replace(regex, " ");
-    return `${newPrefix}${isLastFolderElement ? "└──" : "|──"}`;
-  }
-};
+const { createPrefix } = require("../utils");
 
 /**
  * @typedef Folders - {
@@ -22,7 +14,7 @@ const createPrefix = (isLastFolderElement, parentPrefix) => {
  * @param {string} [parentPrefix] prefix for last element
  */
 
-const createFolders = function (obj, isNotFirstElement, isLastFolderElement, parentPrefix) {
+const outputFoldersInConsole = function (obj, isNotFirstElement, isLastFolderElement, parentPrefix) {
   const { name, items } = obj;
 
   let newPrefix;
@@ -36,24 +28,9 @@ const createFolders = function (obj, isNotFirstElement, isLastFolderElement, par
 
   if (items && items.length) {
     items.forEach((item, id, parentArray) => {
-      createFolders(item, true, !parentArray[id + 1], newPrefix);
+      outputFoldersInConsole(item, true, !parentArray[id + 1], newPrefix);
     });
   }
-};
-
-/**
- * @typedef Folders - {
- *  name: string;
- *  items?: Folders[]
- * }
- * @type {object}
- * @property {string} name - name folder.
- * @property {Folders[]} [items] - items in current folder.
- * @param {Folders} folders
- */
-
-const outputFoldersInConsole = function (folders) {
-  createFolders(folders);
 };
 
 module.exports = {

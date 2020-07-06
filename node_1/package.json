@@ -1,15 +1,19 @@
 {
-  "name": "node_1",
+  "name": "tree",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "My First Node.js CLI",
+  "main": "./index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cowboy": "0.0.5",
     "yargs": "^15.4.0"
-  }
+  },
+  "bin": {
+    "tree": "./index.js"
+  },
+  "devDependencies": {},
+  "keywords": []
 }
