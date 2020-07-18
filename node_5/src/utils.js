@@ -9,8 +9,7 @@ const isFileDirectory = async (path) => {
     const stats = await fileStat(path);
     return stats.isDirectory();
   } catch (error) {
-    console.log(error);
-    process.exit(1);
+    throw new Error(error.message);
   }
 };
 

@@ -1,4 +1,4 @@
-const { createPrefix } = require("../utils");
+const { createPrefix } = require("./utils.js");
 
 /**
  * @typedef Folders - {
@@ -33,6 +33,4 @@ const outputFoldersInConsole = function (obj, isNotFirstElement, isLastFolderEle
   }
 };
 
-module.exports = {
-  outputFoldersInConsole,
-};
+module.exports = outputFoldersInConsole;

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watchAll --coverage"
   },
   "author": "",
   "license": "ISC",
@@ -13,5 +13,9 @@
   },
   "bin": {
     "tree": "./index.js"
+  },
+  "devDependencies": {
+    "jest": "^26.1.0",
+    "mock-fs": "^4.12.0"
   }
 }
