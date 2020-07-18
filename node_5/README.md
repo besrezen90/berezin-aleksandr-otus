@@ -16,6 +16,12 @@ $ npm install -g
 $ tree -p <path> -d <depth>
 ```
 
+## Тесты:
+
+```sh
+$ npm run test
+```
+
 ## Параметры
 
 1. -p, --path: Путь до целевой папки (string, required)
