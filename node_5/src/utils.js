@@ -9,7 +9,7 @@ const isFileDirectory = async (path) => {
     const stats = await fileStat(path);
     return stats.isDirectory();
   } catch (error) {
-    throw new Error(error.message);
+    throw new Error("Path is not correct");
   }
 };
 

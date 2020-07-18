@@ -50,5 +50,13 @@ describe("Utils", () => {
       const isFolder = await isFileDirectory("path/to/fake/dir/some-file.txt");
       expect(isFolder).toBe(false);
     });
+
+    it("should be check element 'Error'", async () => {
+      try {
+        await isFileDirectory("invalid_path");
+      } catch (e) {
+        expect(e).toEqual(new Error("Path is not correct"));
+      }
+    });
   });
 });
