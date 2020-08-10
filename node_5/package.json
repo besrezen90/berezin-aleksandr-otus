@@ -1,0 +1,21 @@
+{
+  "name": "node_5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll --coverage"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "yargs": "^15.4.0"
+  },
+  "bin": {
+    "tree": "./index.js"
+  },
+  "devDependencies": {
+    "jest": "^26.1.0",
+    "mock-fs": "^4.12.0"
+  }
+}
