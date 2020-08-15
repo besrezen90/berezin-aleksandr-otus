@@ -5,13 +5,11 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "start": "node server.js",
-    "test": "jest --watchAll --coverage"
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^26.4.0",
     "nodemon": "^2.0.4"
   },
   "dependencies": {
