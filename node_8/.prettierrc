@@ -1,0 +1,12 @@
+{
+  "bracketSpacing": true,
+  "overrides": [
+    {
+      "files": "*.pug",
+      "options": {
+        "parser": "pug",
+        "bracketSpacing": false
+      }
+    }
+  ]
+}
