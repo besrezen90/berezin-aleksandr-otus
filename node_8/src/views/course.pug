@@ -2,7 +2,10 @@ extends index
 
 
 block content
-    h1= title
+    .course-title
+        h1= title
+        //- TODO: кнопка доступна только если у пользователя нет доступа к занятиям курса
+        button.btn.btn-primary Запросить доступ
     .row
         .col.s12
             .card
@@ -17,6 +20,7 @@ block content
                         .collapsible-header
                             i.material-icons control_point
                             span= lesson.title
+                            //- TODO: Ссылка доступна только если автор дал доступ пользователю
                             a(href=`/lesson/${course.id}/${lesson.id}`).waves-effect.waves-light.btn-small.lesson-button Перейти
                         .collapsible-body
                             p= lesson.description

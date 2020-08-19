@@ -3,11 +3,9 @@ const { courses, lessons } = require("../db/db");
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.render("courses", {
-    title: "Курсы",
-    message: "Наши курсы",
-    courses,
+router.get("/course/add", (req, res) => {
+  res.render("add", {
+    title: "Добавить новый курс",
   });
 });
 
@@ -19,6 +17,14 @@ router.get("/course/:id", (req, res) => {
     title: currentCourse.title,
     course: currentCourse,
     lessons: currentLessons,
+  });
+});
+
+router.get("/", (req, res) => {
+  res.render("courses", {
+    title: "Курсы",
+    message: "Наши курсы",
+    courses,
   });
 });
 
