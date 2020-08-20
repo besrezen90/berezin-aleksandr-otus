@@ -44,20 +44,25 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// FIXME: добовление комментариев
+router.post("/:lessonId", async (req, res) => {
+  const { lessonId } = req.params;
+  const { comment } = req.body;
+  const { user } = req.session;
 
-// router.post("/:courseId/:lessonId", (req, res) => {
-//   const { courseId, lessonId } = req.params;
-//   const { comment } = req.body;
-//   //   TODO: распарсиить куку пользователя и сохранить новый комментарий
-//   const currentCourse = courses.find((course) => course.id === courseId);
-//   const currentLessons = lessons[courseId].find((lesson) => lesson.id === lessonId);
-//   res.render("lesson", {
-//     title: currentLessons.title,
-//     lesson: currentLessons,
-//     course: currentCourse,
-//     moment,
-//   });
-// });
+  try {
+    const newLesson = await Lesson.findById(lessonId);
+    newLesson.comments.unshift({
+      date: Date.now(),
+      message: comment,
+      author: user.email,
+    });
+
+    await newLesson.save();
+
+    res.redirect(`/lesson/${lessonId}`);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 module.exports = router;
