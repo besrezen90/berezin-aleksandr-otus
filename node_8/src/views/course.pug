@@ -5,8 +5,9 @@ block content
     .course-title
         h1= title
         if isOwner
-            //- TODO: добавить обработчик для удаления
-            button.btn.btn-primary.red Удалить
+            .course-actions
+                a(href=`/course/access-list/${course._id}` style="margin-right: 20px").btn.btn-primary Запросы доступа
+                button.btn.btn-primary.red Удалить
         else if isReqMember
             button(data-access-request= course._id disabled).btn.btn-primary Ожидание доступа
         else if !isMember

@@ -1,0 +1,12 @@
+extends index
+
+
+block content
+    h1= title
+    .row
+        .col.s12
+            each user in course.accessRequest
+                .access-item
+                    h6= user
+                    button(data-access-user= user data-course= course._id).btn.btn-primary#access-response Предоставить доступ
+

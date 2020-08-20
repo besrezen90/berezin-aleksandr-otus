@@ -63,6 +63,26 @@ router.put("/course/request-access/:id", async (req, res) => {
   }
 });
 
+router.put("/course/response-access/:courseId/:newUser", async (req, res) => {
+  const { courseId, newUser } = req.params;
+
+  try {
+    const course = await Course.findById(courseId);
+    if (!course.members.includes(newUser)) {
+      course.accessRequest = course.accessRequest.filter(
+        (user) => user !== newUser
+      );
+      course.members.push(newUser);
+      await course.save();
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(200);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.get("/", async (req, res) => {
   const { isAuthenticated } = req.session;
   try {
@@ -71,6 +91,21 @@ router.get("/", async (req, res) => {
       title: "Курсы",
       message: "Наши курсы",
       courses,
+      isAuth: isAuthenticated,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/course/access-list/:courseId", async (req, res) => {
+  const { courseId } = req.params;
+  const { isAuthenticated } = req.session;
+  try {
+    const course = await Course.findById(courseId);
+    res.render("accessList", {
+      title: `Запросы доступа к курсу ${course.title}`,
+      course,
       isAuth: isAuthenticated,
     });
   } catch (error) {
