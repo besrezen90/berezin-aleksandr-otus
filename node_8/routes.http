@@ -1,0 +1,20 @@
+POST http://localhost:3000/auth/register HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sasha",
+    "email": "testemail@mail.ru",
+    "password": "123"
+}
+
+GET http://localhost:3000/course/add HTTP/1.1
+content-type: text/html
+
+POST http://localhost:3000/course/add HTTP/1.1
+content-type: application/json
+
+{
+    "title": "sasha",
+    "url": "testemail@mail.ru",
+    "description": "123"
+}

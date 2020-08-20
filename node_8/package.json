@@ -13,8 +13,12 @@
     "nodemon": "^2.0.4"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-mongodb-session": "^2.4.1",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "moment": "^2.27.0",
+    "mongoose": "^5.10.0",
     "pug": "^3.0.0"
   }
 }

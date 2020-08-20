@@ -1,0 +1,17 @@
+extends index
+
+block content
+    h1= title
+    form(action="/lesson/add", method="post")
+        .input-field.col.s6
+            input(type="text" name="title" required)#title.validate
+            label(for="title") Название занятия
+        .input-field.col.s6
+            input(type="text" name="description" required)#description.validate
+            label(for="description") Описание занятия
+        .input-field.col.s6
+            input(type="url" name="videoUrl" required)#video.validate
+            label(for="video") Ссылка на видео
+        .input-field.col.s6
+            input(type="text" name="courseId" hidden value= courseId)
+        button(type="submit").btn.btn-primary Создать

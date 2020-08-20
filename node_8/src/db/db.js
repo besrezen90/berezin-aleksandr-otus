@@ -405,7 +405,8 @@ const courses = [
     id: "c35adbbd-8dab-4e36-884d-854c653af3ca",
     title: "NodeJS",
     description: "Описание курса NodeJs",
-    url: "https://habrastorage.org/webt/xc/4n/a1/xc4na1sca8xlufsjkj3yyo1z9m8.jpeg",
+    url:
+      "https://habrastorage.org/webt/xc/4n/a1/xc4na1sca8xlufsjkj3yyo1z9m8.jpeg",
   },
   {
     id: "045568047-8919-4269-b234-efedfc0cfe15",
@@ -417,7 +418,8 @@ const courses = [
     id: "d3d4e091-08ff-4ec4-8603-d7842e3f633f",
     title: "Angular",
     description: "Описание курса Angular",
-    url: "https://habrastorage.org/webt/qj/4f/bq/qj4fbq3wwv0pxasvf57drlggaom.jpeg",
+    url:
+      "https://habrastorage.org/webt/qj/4f/bq/qj4fbq3wwv0pxasvf57drlggaom.jpeg",
   },
 ];
 

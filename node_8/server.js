@@ -1,3 +1,3 @@
-const app = require("./src/app");
+const { start } = require("./src/app");
 
-app.listen(3000, () => console.log("Hello from 3000"));
+start();

@@ -7,24 +7,24 @@ block content
             h4= lesson.title
             .lesson-main
                 .lesson-main-video
-                    iframe( width="100%" height="100%" src="https://www.youtube.com/embed/LXb3EKWsInQ" frameborder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+                    video(src= lesson.videoUrl controls).responsive-video.video
 
                 .lesson-main-att Тут будут приложения к уроку которые может загружать только автор курса
             p= lesson.description
 
             .comments
-                h6 Комментарии к уроку: 
-                ul.collection
-                    each comment in lesson.comments
-                        li.collection-item
-                            span.title.comments-title 
-                                span.comments-author= `От: ${comment.author}`
-                                spam.comments-time= `Дата: ${moment(comment.date).format("DD MMM YYYY | HH:mm")}`
-                            .comments-message= comment.message
+                h6 Комментарии к уроку:
+                if lesson.comments.length
+                    ul.collection
+                        each comment in lesson.comments
+                            li.collection-item
+                                span.title.comments-title 
+                                    span.comments-author= `От: ${comment.author}`
+                                    spam.comments-time= `Дата: ${moment(comment.date).format("DD MMM YYYY | HH:mm")}`
+                                .comments-message= comment.message
 
-            //- TODO: пока по моковых данных будет работать по такому кривому роуту
-            //- когда будет бд урл будет типа /lesson/:id
-            form(action=`/lesson/${course.id}/${lesson.id}`, method="POST")
+
+            form(action=`/lesson/${lesson.id}`, method="POST")
                 .input-field
                     textarea(name="comment", cols="30", rows="10")#comment.materialize-textarea
                     label(for="comment") Новый комментарий
