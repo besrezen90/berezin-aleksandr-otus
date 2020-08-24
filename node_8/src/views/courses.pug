@@ -14,5 +14,6 @@ block content
                             span.card-title.course-text-invert= course.title
                         .card-content
                             p= course.description
-                        .card-action
-                            a(href=`/course/${course.id}`) О курсе
+                        if isAuth
+                            .card-action
+                                a(href=`/course/${course.id}`) О курсе

@@ -83,10 +83,21 @@ router.put("/course/response-access/:courseId/:newUser", async (req, res) => {
   }
 });
 
+router.delete("/course/remove/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await Course.findByIdAndUpdate({ _id: id }, { isDelete: true });
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.get("/", async (req, res) => {
   const { isAuthenticated } = req.session;
   try {
-    const courses = await Course.find();
+    const courses = await Course.find({ isDelete: false });
     res.render("courses", {
       title: "Курсы",
       message: "Наши курсы",

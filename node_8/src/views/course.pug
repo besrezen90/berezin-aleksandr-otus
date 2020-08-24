@@ -7,7 +7,7 @@ block content
         if isOwner
             .course-actions
                 a(href=`/course/access-list/${course._id}` style="margin-right: 20px").btn.btn-primary Запросы доступа
-                button.btn.btn-primary.red Удалить
+                button(data-course= course._id disabled= course.isDelete).btn.btn-primary.red#delete-course Удалить
         else if isReqMember
             button(data-access-request= course._id disabled).btn.btn-primary Ожидание доступа
         else if !isMember
@@ -32,7 +32,6 @@ block content
                             .collapsible-header
                                 i.material-icons control_point
                                 span= lesson.title
-                                //- TODO: Ссылка доступна только если автор дал доступ пользователю
                                 if isOwner || isMember
                                     a(href=`/lesson/${lesson._id}`).waves-effect.waves-light.btn-small.lesson-button Перейти
                             .collapsible-body

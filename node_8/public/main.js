@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const accessButton = document.querySelector("#access-request");
 
-const requestAccess = async () => {
+const onRequestAccess = async () => {
   const courseId = accessButton.dataset.accessRequest;
   const url = `http://localhost:3000/course/request-access/${courseId}`;
   if (!accessButton.hasAttribute("disabled")) {
@@ -19,12 +19,12 @@ const requestAccess = async () => {
 };
 
 if (accessButton) {
-  accessButton.addEventListener("click", requestAccess);
+  accessButton.addEventListener("click", onRequestAccess);
 }
 
 const addAccessButtons = document.querySelectorAll("#access-response");
 
-const addAccess = async (e) => {
+const onAddAccess = async (e) => {
   const user = e.target.dataset.accessUser;
   const courseId = e.target.dataset.course;
 
@@ -39,6 +39,23 @@ const addAccess = async (e) => {
 
 if (addAccessButtons) {
   addAccessButtons.forEach((button) =>
-    button.addEventListener("click", addAccess)
+    button.addEventListener("click", onAddAccess)
   );
+}
+
+const deleteCourseButton = document.querySelector("#delete-course");
+
+const onDeleteCourse = async (e) => {
+  const id = e.target.dataset.course;
+  const url = `http://localhost:3000/course/remove/${id}/`;
+
+  if (!e.target.hasAttribute("disabled")) {
+    await fetch(url, { method: "delete" }).then(() => {
+      e.target.setAttribute("disabled", true);
+    });
+  }
+};
+
+if (deleteCourseButton) {
+  deleteCourseButton.addEventListener("click", onDeleteCourse);
 }
