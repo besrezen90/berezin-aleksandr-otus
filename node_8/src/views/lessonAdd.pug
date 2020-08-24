@@ -2,7 +2,7 @@ extends index
 
 block content
     h1= title
-    form(action="/lesson/add", method="post")
+    form(action="/api/lesson/add", method="post")
         .input-field.col.s6
             input(type="text" name="title" required)#title.validate
             label(for="title") Название занятия

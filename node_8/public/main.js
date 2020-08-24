@@ -9,7 +9,7 @@ const accessButton = document.querySelector("#access-request");
 
 const onRequestAccess = async () => {
   const courseId = accessButton.dataset.accessRequest;
-  const url = `http://localhost:3000/course/request-access/${courseId}`;
+  const url = `http://localhost:3000/api/course/request-access/${courseId}`;
   if (!accessButton.hasAttribute("disabled")) {
     await fetch(url, { method: "put" }).then(() => {
       accessButton.textContent = "Ожидание доступа";
@@ -28,7 +28,7 @@ const onAddAccess = async (e) => {
   const user = e.target.dataset.accessUser;
   const courseId = e.target.dataset.course;
 
-  const url = `http://localhost:3000/course/response-access/${courseId}/${user}`;
+  const url = `http://localhost:3000/api/course/response-access/${courseId}/${user}`;
 
   if (!e.target.hasAttribute("disabled")) {
     await fetch(url, { method: "put" }).then(() => {
@@ -47,7 +47,7 @@ const deleteCourseButton = document.querySelector("#delete-course");
 
 const onDeleteCourse = async (e) => {
   const id = e.target.dataset.course;
-  const url = `http://localhost:3000/course/remove/${id}/`;
+  const url = `http://localhost:3000/api/course/remove/${id}/`;
 
   if (!e.target.hasAttribute("disabled")) {
     await fetch(url, { method: "delete" }).then(() => {

@@ -45,27 +45,6 @@
   mix-blend-mode: difference;
 }
 
-.lesson-main {
-  display: flex;
-  align-items: flex-start;
-  max-height: 350px;
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.video {
-  max-height: 350px;
-}
-
-.lesson-main-att {
-  padding: 16px;
-  align-self: stretch;
-  width: 40%;
-  border: 1px solid #e0e0e0;
-  max-height: 100%;
-  overflow: auto;
-}
-
 .lesson-button {
   margin-left: auto;
 }
@@ -108,4 +87,8 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #e0e0e0;
+}
+
+.alert {
+  color: #f44336;
 }

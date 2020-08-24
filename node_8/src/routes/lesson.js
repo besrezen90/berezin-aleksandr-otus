@@ -1,12 +1,13 @@
 const { Router } = require("express");
-const Lesson = require("../models/lesson");
-
 const moment = require("moment");
+const Lesson = require("../models/lesson");
+const authCheck = require("../middlewares/authCheck");
+
 moment.locale("ru");
 
 const router = Router();
 
-router.get("/add/:courseId", async (req, res) => {
+router.get("/add/:courseId", authCheck, async (req, res) => {
   const { courseId } = req.params;
   const { isAuthenticated } = req.session;
 
@@ -17,18 +18,7 @@ router.get("/add/:courseId", async (req, res) => {
   });
 });
 
-router.post("/add", async (req, res) => {
-  const { title, description, videoUrl, courseId } = req.body;
-  try {
-    const lesson = new Lesson({ title, description, videoUrl, courseId });
-    await lesson.save();
-    res.redirect(`/course/${courseId}`);
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-router.get("/:id", async (req, res) => {
+router.get("/:id", authCheck, async (req, res) => {
   const { id } = req.params;
   const { isAuthenticated } = req.session;
   try {
@@ -39,27 +29,6 @@ router.get("/:id", async (req, res) => {
       moment,
       isAuth: isAuthenticated,
     });
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-router.post("/:lessonId", async (req, res) => {
-  const { lessonId } = req.params;
-  const { comment } = req.body;
-  const { user } = req.session;
-
-  try {
-    const newLesson = await Lesson.findById(lessonId);
-    newLesson.comments.unshift({
-      date: Date.now(),
-      message: comment,
-      author: user.email,
-    });
-
-    await newLesson.save();
-
-    res.redirect(`/lesson/${lessonId}`);
   } catch (error) {
     console.log(error);
   }
