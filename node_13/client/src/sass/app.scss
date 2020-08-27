@@ -1,0 +1,29 @@
+.wrap {
+  height: calc(100vh - 128px + 56px);
+  overflow-y: auto;
+  padding: 0 15%;
+}
+
+.title {
+  color: white;
+}
+
+header {
+  position: sticky;
+  top: 0;
+}
+
+footer {
+  background-color: #fff;
+}
+
+.footer-date {
+  display: flex;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.message {
+  padding: 16px 0;
+  border-bottom: 1px solid #343a40;
+}
