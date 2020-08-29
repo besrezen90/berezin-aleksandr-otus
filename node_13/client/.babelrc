@@ -1,13 +1,14 @@
 {
-	"presets": [
-		[
-			"@babel/preset-env",
-			{
-				"targets": {
-					"browsers": ["> 1%", "ie >= 11"]
-				},
-				"modules": false
-			}
-		]
-	]
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "esmodules": true,
+          "browsers": ["> 1%", "ie >= 11"]
+        },
+        "modules": false
+      }
+    ]
+  ]
 }

@@ -1,6 +1,7 @@
 'use strict';
 
 const gulp = require('gulp');
+const workbox = require('workbox-build');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify-es').default;
 const sass = require('gulp-sass');
@@ -226,7 +227,7 @@ function scssProcess() {
  */
 function libsJsProcess() {
   return gulp
-    .src(['node_modules/jquery/dist/jquery.min.js', src.js + '/!(app)*.js'])
+    .src(['node_modules/jquery/dist/jquery.min.js'])
     .pipe(concat('libs.min.js'))
     .pipe(babel())
     .pipe(uglify({ output: { quote_keys: true, ascii_only: true } }))
@@ -240,14 +241,14 @@ function libsJsProcess() {
 function jsProcess() {
   if (arg.production === 'true') {
     return gulp
-      .src([src.js + '/app.js'])
+      .src([src.js + '/app.js', src.js + '/sw.js'])
       .pipe(beautify())
       .pipe(babel())
       .pipe(prettier())
       .pipe(gulp.dest(dist.js));
   } else {
     return gulp
-      .src([src.js + '/app.js'])
+      .src([src.js + '/app.js', src.js + '/sw.js'])
       .pipe(babel())
       .pipe(gulp.dest(dist.js));
   }
@@ -282,6 +283,24 @@ function publicProcess() {
     .pipe(gulp.dest(paths.dist));
 }
 
+function generateServiceWorker() {
+  return workbox
+    .injectManifest({
+      swSrc: src.js + '/sw.js',
+      swDest: dist.js + '/sw.js',
+    })
+    .then(({ count, size }) => {
+      console.log(
+        `Generated ${swDest}, which will precache ${count} files, totaling ${size} bytes.`,
+      );
+    })
+    .catch((e) => new Error(e));
+}
+
+function swProcess() {
+  return gulp.task('generate-service-worker', generateServiceWorker);
+}
+
 /**
  * Наблюдение за изменениями в файлах
  */
@@ -291,10 +310,12 @@ function watchFiles() {
   gulp.watch(src.css, gulp.series(cssProcess, browserSyncReload));
   gulp.watch(src.scss + '/**/*.*', gulp.series(scssProcess, browserSyncReload));
   gulp.watch(
-    src.js + '/!(app)*.js',
+    src.js + '/!(app|sw)*.js',
     gulp.series(libsJsProcess, browserSyncReload),
   );
   gulp.watch(src.js + '/app.js', gulp.series(jsProcess, browserSyncReload));
+  gulp.watch(src.js + '/sw.js', gulp.series(jsProcess, browserSyncReload));
+  //   gulp.watch(src.js + '/sw.js', swProcess);
   gulp.watch(src.img, gulp.series(imgProcess, browserSyncReload));
   gulp.watch(src.svg, gulp.series(SVGProcess, browserSyncReload));
   gulp.watch(src.fonts, gulp.series(copyFonts, browserSyncReload));
@@ -313,6 +334,7 @@ const build = gulp.series(
     imgProcess,
     copyFonts,
     publicProcess,
+    // swProcess,
   ),
   hashProcess,
 );
