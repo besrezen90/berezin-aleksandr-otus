@@ -2,11 +2,15 @@ const express = require("express");
 const http = require("http");
 const WebSocket = require("ws");
 const articles = require("./articles");
+const mainRoutes = require("./routes/main");
 const randomInteger = require("./randomInteger");
 
 const app = express();
 
 app.set("port", 3000);
+
+app.use(express.static(__dirname + "/public"));
+app.use("/", mainRoutes);
 
 const server = http.createServer(app);
 const ws = new WebSocket.Server({ server });
