@@ -1,14 +1,14 @@
 const PARAMS = {
   START_MESSAGE: 'ServiceWorker activated!!!',
   SYSTEM_TITLE: 'System notify:',
-  WSS: 'wss://echo.websocket.org/',
+  WSS: 'ws://localhost:3000',
 };
 
 const socket = new WebSocket(PARAMS.WSS);
 
-globalThis.addEventListener('install', (e) =>
-  console.log('ServiceWorker install'),
-);
+globalThis.addEventListener('install', (e) => {
+  console.log('ServiceWorker install');
+});
 
 const createNewMessage = (body, title = PARAMS.SYSTEM_TITLE) => {
   const { registration } = globalThis;
@@ -40,7 +40,7 @@ const onErrorWss = (e) => {
 };
 
 const onMessageWss = async (e) => {
-  const { data } = e;
+  const { title, body } = JSON.parse(e.data);
 
   try {
     const clients = await globalThis.clients.matchAll({
@@ -51,8 +51,8 @@ const onMessageWss = async (e) => {
     if (clients) {
       clients.forEach((client) => {
         client.postMessage({
-          title: 'New message',
-          body: data,
+          title,
+          body,
         });
       });
     }
@@ -63,6 +63,7 @@ const onMessageWss = async (e) => {
 
 const getNewArticle = (e) => {
   const { data } = e;
+  console.log(data);
   socket.send(`${data}`);
 };
 
