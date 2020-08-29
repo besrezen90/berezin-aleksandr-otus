@@ -45,6 +45,7 @@ const generateMessageContainer = (title, body) => {
 const serviceWorkerRegister = async () => {
   try {
     await enableNotify();
+
     serviceWorker = await navigator.serviceWorker.register("/js/sw.js");
 
     if (serviceWorker) {

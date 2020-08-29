@@ -4,11 +4,7 @@ const PARAMS = {
   WSS: "ws://localhost:3000",
 };
 
-const socket = new WebSocket(PARAMS.WSS);
-
-globalThis.addEventListener("install", (e) => {
-  console.log("ServiceWorker install");
-});
+let socket = new WebSocket(PARAMS.WSS);
 
 const createNewMessage = (body, title = PARAMS.SYSTEM_TITLE) => {
   const { registration } = globalThis;
@@ -61,24 +57,39 @@ const onMessageWss = async (e) => {
   }
 };
 
-const getNewArticle = (e) => {
-  const { data } = e;
-  console.log(data);
-  socket.send(`${data}`);
+const removeEventsToWebSocket = () => {
+  socket.removeEventListener("open", (e) => onOpenWss(e));
+  socket.removeEventListener("close", (e) => onOpenWss(e));
+  socket.removeEventListener("message", (e) => onMessageWss(e));
+  socket.removeEventListener("error", (e) => onErrorWss(e));
 };
 
-const startWebSocket = () => {
+const addEventsToWebSocket = () => {
   socket.addEventListener("open", (e) => onOpenWss(e));
   socket.addEventListener("close", (e) => onOpenWss(e));
   socket.addEventListener("message", (e) => onMessageWss(e));
   socket.addEventListener("error", (e) => onErrorWss(e));
 };
 
+const getNewArticle = (e) => {
+  const { data } = e;
+  const socketState = socket.readyState;
+  if (socketState === 2 || socketState === 3) {
+    console.log(socketState);
+    removeEventsToWebSocket();
+    socket = new WebSocket(PARAMS.WSS);
+    addEventsToWebSocket();
+  }
+
+  socket.send(`${data}`);
+};
+
 const startServiceWorker = (e) => {
   e.waitUntil(globalThis.clients.claim());
   createNewMessage(PARAMS.START_MESSAGE);
-  startWebSocket();
+  addEventsToWebSocket();
 };
 
+globalThis.addEventListener("install", (e) => console.log("ServiceWorker install"));
 globalThis.addEventListener("message", (e) => getNewArticle(e));
 globalThis.addEventListener("activate", (e) => startServiceWorker(e));

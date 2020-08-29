@@ -4,19 +4,7 @@
 
 ## Установка и запуск:
 
-Клиентская часть:
-
 ```sh
-$ cd ./client
-$ npm i -g gulp bower
-$ npm i
-$ npm run start
-```
-
-Серверная часть:
-
-```sh
-$ cd ./server
 $ npm i
 $ npm run dev
 ```
