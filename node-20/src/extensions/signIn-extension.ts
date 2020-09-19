@@ -1,6 +1,7 @@
 import { GluegunToolbox } from 'gluegun'
 import { deepEqual } from 'fast-equals'
 import { IUser } from '../types'
+import { Validator } from '../helpers/validator'
 
 const TEST_USER: IUser = {
   login: 'test',
@@ -20,12 +21,7 @@ module.exports = async (toolbox: GluegunToolbox) => {
       type: 'input',
       name: 'key',
       message: 'Введите login',
-      validate: value => {
-        if (!value.trim()) {
-          return 'login не может быть пустым'
-        }
-        return true
-      }
+      validate: Validator.validateString('login не может быть пустым')
     })
 
     if (login.key.trim()) {
@@ -36,12 +32,7 @@ module.exports = async (toolbox: GluegunToolbox) => {
       type: 'input',
       name: 'key',
       message: 'Введите password',
-      validate: value => {
-        if (!value.trim()) {
-          return 'password не может быть пустым'
-        }
-        return true
-      }
+      validate: Validator.validateString('Password не может быть пустым')
     })
 
     if (password.key.trim()) {

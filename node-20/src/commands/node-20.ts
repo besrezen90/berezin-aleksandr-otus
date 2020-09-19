@@ -11,13 +11,14 @@ module.exports = {
     signUp,
     userService
   }: GluegunToolbox) => {
-    const { readUser, saveUser } = userService
+    const { readUser, saveUser, deleteUser } = userService
 
     const user: IUser | false = await readUser()
     print.info(JSON.stringify(user))
 
     if (user) {
-      // Выйти или список todo
+      // TODO: реализовать логику
+      await deleteUser()
     } else {
       const authType = await prompt.ask({
         type: 'select',
@@ -29,7 +30,7 @@ module.exports = {
       if (authType.value === 'Вход') {
         await signIn(saveUser)
       } else {
-        await signUp()
+        await signUp(saveUser)
       }
     }
 
