@@ -1,6 +1,6 @@
 import { GluegunToolbox } from 'gluegun'
 import { Validator } from '../helpers/validator'
-import { userService } from '../services/userService'
+import { UserService } from '../services/userService'
 import { IUser } from '../types'
 
 module.exports = async (toolbox: GluegunToolbox) => {
@@ -49,7 +49,7 @@ module.exports = async (toolbox: GluegunToolbox) => {
 
     const { login, password } = candidate
 
-    await userService.saveNewUser({ login, password })
+    await UserService.saveNewUser({ login, password })
     print.info('Поздравляю, вы зарегистрированы! Выполните вход')
 
     return

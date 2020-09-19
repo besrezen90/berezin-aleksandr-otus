@@ -1,7 +1,7 @@
 import { GluegunToolbox } from 'gluegun'
 import { IUser } from '../types'
 import { Validator } from '../helpers/validator'
-import { userService } from '../services/userService'
+import { UserService } from '../services/userService'
 
 module.exports = async (toolbox: GluegunToolbox) => {
   const { prompt, print } = toolbox
@@ -35,6 +35,6 @@ module.exports = async (toolbox: GluegunToolbox) => {
       candidate.password = password.key.trim()
     }
 
-    return await userService.login(candidate)
+    return await UserService.login(candidate)
   }
 }

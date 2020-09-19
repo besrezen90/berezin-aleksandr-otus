@@ -1,5 +1,5 @@
 import { GluegunToolbox } from 'gluegun'
-import { userService } from '../services/userService'
+import { UserService } from '../services/userService'
 
 module.exports = {
   name: 'login',
@@ -7,10 +7,8 @@ module.exports = {
   description: 'Вход',
 
   run: async ({ print, signIn, signUp }: GluegunToolbox) => {
-    const { isAuth, readUser } = userService
-
-    const auth = await isAuth()
-    const user = await readUser()
+    const auth = await UserService.isAuth()
+    const user = await UserService.readUser()
 
     if (!auth) {
       if (!user) {

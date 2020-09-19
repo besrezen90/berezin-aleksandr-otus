@@ -1,18 +1,17 @@
 import { GluegunToolbox } from 'gluegun'
-import { userService } from '../services/userService'
+import { UserService } from '../services/userService'
 
 module.exports = {
   name: 'logout',
   alias: ['lo'],
   description: 'Выход',
   run: async ({ print }: GluegunToolbox) => {
-    const { isAuth } = userService
-    const auth = await isAuth()
+    const auth = await UserService.isAuth()
 
     if (!auth) {
       print.error(`Вы еще не авторизованы!`)
     } else {
-      await userService.logout()
+      await UserService.logout()
       print.info(`Если че, заходи!`)
     }
   }

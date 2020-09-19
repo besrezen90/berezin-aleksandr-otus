@@ -1,55 +1,43 @@
 import { deepEqual } from 'fast-equals'
-import * as fs from 'fs'
 import * as os from 'os'
-import * as util from 'util'
+import { writeAsync, removeAsync, readAsync, exists } from '../helpers/utils'
 import { IUser } from '../types'
 
 const USER_CONFIG = `${os.homedir()}/.user-node-20`
 const SESSION_CONFIG = `${os.homedir()}/.session-node-20`
-const writeAsync = util.promisify(fs.writeFile)
-const readAsync = util.promisify(fs.readFile)
-const removeAsync = util.promisify(fs.unlink)
-const exists = util.promisify(fs.exists)
 
-interface IUserService {
-  saveNewUser: (user: IUser) => Promise<void>
-  logout: () => Promise<void>
-  login: (newUser: IUser) => Promise<boolean>
-  isAuth: () => Promise<boolean>
-}
-
-class UserService implements IUserService {
-  saveNewUser = async (user: IUser): Promise<void> => {
+export class UserService {
+  static saveNewUser = async (user: IUser): Promise<void> => {
     return await writeAsync(USER_CONFIG, JSON.stringify(user))
   }
 
-  logout = async (): Promise<void> => {
+  static logout = async (): Promise<void> => {
     await removeAsync(SESSION_CONFIG)
   }
 
-  private createNewSession = async (user: IUser): Promise<void> => {
+  private static createNewSession = async (user: IUser): Promise<void> => {
     return await writeAsync(SESSION_CONFIG, JSON.stringify(user))
   }
 
-  readUser = async (): Promise<IUser | false> => {
+  static readUser = async (): Promise<IUser | false> => {
     return (
       (await exists(USER_CONFIG)) &&
       JSON.parse(((await readAsync(USER_CONFIG)) as any) as string)
     )
   }
 
-  private readSession = async (): Promise<IUser | false> => {
+  private static readSession = async (): Promise<IUser | false> => {
     return (
       (await exists(SESSION_CONFIG)) &&
       JSON.parse(((await readAsync(SESSION_CONFIG)) as any) as string)
     )
   }
 
-  login = async (newUser: IUser) => {
-    const oldUser = await this.readUser()
+  static login = async (newUser: IUser) => {
+    const oldUser = await UserService.readUser()
     if (oldUser) {
       if (deepEqual(newUser, oldUser)) {
-        await this.createNewSession(newUser)
+        await UserService.createNewSession(newUser)
         return true
       }
       return false
@@ -58,9 +46,9 @@ class UserService implements IUserService {
     }
   }
 
-  isAuth = async () => {
-    const user = await this.readUser()
-    const session = await this.readSession()
+  static isAuth = async () => {
+    const user = await UserService.readUser()
+    const session = await UserService.readSession()
     if (user && session && deepEqual(user, session)) {
       return true
     } else {
@@ -68,5 +56,3 @@ class UserService implements IUserService {
     }
   }
 }
-
-export const userService = new UserService()
