@@ -1,12 +1,7 @@
 import { GluegunToolbox } from 'gluegun'
-import { deepEqual } from 'fast-equals'
 import { IUser } from '../types'
 import { Validator } from '../helpers/validator'
-
-const TEST_USER: IUser = {
-  login: 'test',
-  password: 'test'
-}
+import { userService } from '../services/userService'
 
 module.exports = async (toolbox: GluegunToolbox) => {
   const { prompt, print } = toolbox
@@ -16,7 +11,8 @@ module.exports = async (toolbox: GluegunToolbox) => {
     password: ''
   }
 
-  toolbox.signIn = async (saveUser: (user: IUser) => Promise<void>) => {
+  toolbox.signIn = async () => {
+    print.info('Вход')
     const login = await prompt.ask({
       type: 'input',
       name: 'key',
@@ -39,14 +35,6 @@ module.exports = async (toolbox: GluegunToolbox) => {
       candidate.password = password.key.trim()
     }
 
-    if (deepEqual(TEST_USER, candidate)) {
-      // TODO: проверим наличие пользователя в БД
-      print.info(`${candidate.login}, добро пожаловать!`)
-
-      await saveUser(candidate)
-    } else {
-      print.error('Неверное сочетание login и password')
-    }
-    return
+    return await userService.login(candidate)
   }
 }

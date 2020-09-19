@@ -6,7 +6,7 @@ const { build } = require('gluegun')
 async function run(argv) {
   // create a CLI runtime
   const cli = build()
-    .brand('node-20')
+    .brand('Мои любимые фильмы')
     .src(__dirname)
     .plugins('./node_modules', { matching: 'node-20-*', hidden: true })
     .help() // provides default for help, h, --help, -h

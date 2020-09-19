@@ -1,8 +1,8 @@
 import { GluegunToolbox } from 'gluegun'
 import { Validator } from '../helpers/validator'
+import { userService } from '../services/userService'
 import { IUser } from '../types'
 
-// TODO: Добавить валидацию полей и сохранение пользователя в бд
 module.exports = async (toolbox: GluegunToolbox) => {
   const { prompt, print } = toolbox
 
@@ -12,7 +12,8 @@ module.exports = async (toolbox: GluegunToolbox) => {
     confirmPassword: ''
   }
 
-  toolbox.signUp = async (saveUser: (user: IUser) => Promise<void>) => {
+  toolbox.signUp = async () => {
+    print.info('Регистрация')
     const newLogin = await prompt.ask({
       type: 'input',
       name: 'key',
@@ -48,8 +49,8 @@ module.exports = async (toolbox: GluegunToolbox) => {
 
     const { login, password } = candidate
 
-    await saveUser({ login, password })
-    print.info('Поздравляю, вы зарегистрированы')
+    await userService.saveNewUser({ login, password })
+    print.info('Поздравляю, вы зарегистрированы! Выполните вход')
 
     return
   }
