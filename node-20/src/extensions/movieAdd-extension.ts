@@ -15,29 +15,27 @@ module.exports = async (toolbox: GluegunToolbox) => {
 
   toolbox.movieAdd = async (movie: IMovie = EMPTY_MOVIE) => {
     const { id, ...oldFields } = movie
-    print.info('Создание/Редактирование фильма')
+    print.info('Creating / Editing a movie')
     const candidate: Omit<IMovie, 'id'> = await prompt.ask([
       {
         type: 'input',
         name: 'name',
-        message: 'Введите название',
+        message: 'Enter a name',
         result: value => value.trim(),
-        validate: Validator.validateString(
-          'Название фильма не может быть пустым'
-        ),
+        validate: Validator.validateString("The movie name can't be empty"),
         initial: oldFields.name
       },
       {
         type: 'input',
         name: 'author',
-        message: 'Введите автора фильма',
+        message: 'Enter a author',
         initial: oldFields.author,
         result: value => value.trim()
       },
       {
         type: 'numeral',
         name: 'rate',
-        message: 'Введите личный рейтинг фильма',
+        message: 'Enter your personal rating for the movie',
         min: 0,
         max: 10,
         initial: oldFields.rate,

@@ -7,34 +7,34 @@ module.exports = async (toolbox: GluegunToolbox) => {
   const { prompt, print } = toolbox
 
   toolbox.signUp = async () => {
-    print.info('Регистрация')
+    print.info('Registration')
     const candidate: IUser = await prompt.ask([
       {
         type: 'input',
         name: 'login',
-        message: 'Введите login',
+        message: 'Enter a login',
         result: (value: string) => value.trim(),
-        validate: Validator.validateString('login не может быть пустым')
+        validate: Validator.validateString('Login cannot be empty')
       },
       {
         type: 'password',
         name: 'password',
-        message: 'Введите password',
-        validate: Validator.validateString('Password не может быть пустым')
+        message: 'Enter a password',
+        validate: Validator.validateString('Password cannot be empty')
       }
     ])
 
     await prompt.ask({
       type: 'password',
       name: 'key',
-      message: 'Повтортите password',
+      message: 'Repeat password',
       validate: Validator.validateConfirmPassword(candidate.password)
     })
 
     const { login, password } = candidate
 
     await UserService.saveNewUser({ login, password })
-    print.info('Поздравляю, вы зарегистрированы! Выполните вход')
+    print.info('Congratulations, you are registered! Log in')
 
     return
   }

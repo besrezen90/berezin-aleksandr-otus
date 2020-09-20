@@ -6,7 +6,7 @@ import { MoviesService } from '../../services/moviesService'
 module.exports = {
   name: 'delete',
   alias: ['d'],
-  description: 'Удалить фильм по id <id>',
+  description: 'Delete a movie by id <id>',
 
   run: async ({ print, parameters }: GluegunToolbox) => {
     const id = parameters.argv[parameters.argv.length - 1]

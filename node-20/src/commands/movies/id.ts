@@ -6,7 +6,7 @@ import { MoviesService } from '../../services/moviesService'
 module.exports = {
   name: 'id',
   alias: ['i'],
-  description: 'Найти фильм по id <id>',
+  description: 'Find a movie by id <id>',
 
   run: async ({ print, parameters }: GluegunToolbox) => {
     const id = parameters.argv[parameters.argv.length - 1]

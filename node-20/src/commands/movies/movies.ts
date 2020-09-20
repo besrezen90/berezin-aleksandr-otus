@@ -6,7 +6,7 @@ import { MoviesService } from '../../services/moviesService'
 module.exports = {
   name: 'movies',
   alias: ['mv'],
-  description: 'Список сохраненных фильмов',
+  description: 'List of saved movies',
 
   run: async ({ print }: GluegunToolbox) => {
     await checkAuth()
@@ -16,7 +16,3 @@ module.exports = {
     print.success(tableGenerator(movies))
   }
 }
-
-// TODO:
-// 3. Запилить сортировку для таблицы
-// 4. В зависимости от времени замутить прикольный степер при создании / редактировании чего-либо

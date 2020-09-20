@@ -7,20 +7,20 @@ module.exports = async (toolbox: GluegunToolbox) => {
   const { prompt, print } = toolbox
 
   toolbox.signIn = async () => {
-    print.info('Вход')
+    print.info('Login')
     const candidate: IUser = await prompt.ask([
       {
         type: 'input',
         name: 'login',
-        message: 'Введите login',
+        message: 'Enter a login',
         result: (value: string) => value.trim(),
-        validate: Validator.validateString('login не может быть пустым')
+        validate: Validator.validateString('login cannot be empty')
       },
       {
         type: 'password',
         name: 'password',
-        message: 'Введите password',
-        validate: Validator.validateString('Password не может быть пустым')
+        message: 'Enter a password',
+        validate: Validator.validateString('Password cannot be empty')
       }
     ])
 

@@ -4,7 +4,7 @@ const Table = require('cli-table')
 
 export const tableGenerator = (movies: IMovie[]): string => {
   if (!movies.length) {
-    return 'Список пуст'
+    return 'List is empty'
   }
 
   const heads: Array<keyof IMovie> = ['id', 'name', 'author', 'rate']

@@ -4,7 +4,7 @@ import { UserService } from '../services/userService'
 module.exports = {
   name: 'login',
   alias: ['li'],
-  description: 'Вход',
+  description: 'Login',
 
   run: async ({ print, signIn, signUp }: GluegunToolbox) => {
     const auth = await UserService.isAuth()
@@ -16,11 +16,11 @@ module.exports = {
       } else {
         const auth = await signIn()
         auth
-          ? print.info('Успешный вход в систему')
-          : print.error('Неверный логин или пароль')
+          ? print.success('Successful login!')
+          : print.error('Invalid username or password')
       }
     } else {
-      print.info(`Вы уже авторизованы!`)
+      print.info(`You are already logged in!`)
     }
   }
 }
