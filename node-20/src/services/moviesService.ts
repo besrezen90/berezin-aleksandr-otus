@@ -30,22 +30,22 @@ export class MoviesService {
 
   static delete = async (id: string) => {
     const movies = await MoviesService.getAll()
-    const newMovies = movies.filter(movie => movie.id === id)
+    const newMovies = movies.filter(movie => movie.id !== id)
     await writeAsync(MOVIES_CONFIG, JSON.stringify(newMovies))
   }
 
-  static findById = async (id: string): Promise<IMovie | null> => {
+  static findById = async (id: string): Promise<IMovie[] | null> => {
     const movies = await MoviesService.getAll()
     const movie = movies.find(el => el.id === id)
-    return movie
+    return movie ? [movie] : []
   }
 
   static update = async (updateMovie: IMovie) => {
-    const { id, ...newFields } = updateMovie
+    const { id } = updateMovie
     const movies = await MoviesService.getAll()
-    let movie = movies.find(el => el.id === id)
-    if (movie) {
-      movie = { ...movie, ...newFields }
+    const movieIdx = movies.findIndex(el => el.id === id)
+    if (movieIdx !== -1) {
+      movies[movieIdx] = updateMovie
       await writeAsync(MOVIES_CONFIG, JSON.stringify(movies))
       return true
     } else {
