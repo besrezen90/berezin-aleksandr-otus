@@ -1,0 +1,25 @@
+GET  http://localhost:3000/crowd HTTP/1.1
+
+###
+
+GET  http://localhost:3000/crowd?status=active&sortedBy=created_at&order=desc HTTP/1.1
+
+###
+POST http://localhost:3000/crowd HTTP/1.1
+content-type: application/json
+
+{
+    "name": "елик",
+    "description": "Давай еще очень хочу",
+    "total": 12,
+    "url": "https://vignette.wikia.nocookie.net/dayr/images/1/1c/%D0%A1%D0%BB%D0%BE%D0%BC%D0%B0%D0%BD%D0%BD%D1%8B%D0%B9_%D0%B2%D0%B5%D0%BB%D0%BE%D1%81%D0%B8%D0%BF%D0%B5%D0%B4.png/revision/latest?cb=20170508054726&path-prefix=ru"
+}
+
+###
+POST http://localhost:3000/crowd/donate HTTP/1.1
+content-type: application/json
+
+{
+    "id": "5f6c93b7d58e610f3072dfc9",
+    "sum": 1
+}

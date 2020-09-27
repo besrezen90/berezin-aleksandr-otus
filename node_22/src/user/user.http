@@ -1,0 +1,22 @@
+GET  http://localhost:3000/user HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJzdWIiOiI1ZjZiODBiNjEzY2FiZjJkMmM5MmRkMTciLCJpYXQiOjE2MDA5MzA0MjgsImV4cCI6MTYwMDk2NjQyOH0.61FQesIzU44Jr7EQRXnkP08Mq6CWzkpJpvFAzczXa58
+
+###
+# curl -X POST http://localhost:3000/auth/signin -d '{"username": "test", "password": "testtest"}' -H "Content-Type: application/json"
+###
+
+GET  http://localhost:3000/user/list HTTP/1.1
+
+###
+
+PUT http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+    "firstName": "Sasha",
+    "lastName": "Ivanov",
+    "age": 27,
+    "url": "https://ya.ru",
+    "gender": "male"
+}
