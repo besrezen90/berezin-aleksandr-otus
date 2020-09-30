@@ -29,6 +29,18 @@
   padding-top: 16px;
 }
 
+.course-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 32px;
+  padding: 0 12px;
+}
+
+.course-title h1 {
+  margin: 0;
+}
+
 .course-text-invert {
   mix-blend-mode: difference;
 }
@@ -66,4 +78,17 @@
 
 .comments-message {
   margin-bottom: 24px;
+}
+
+.access-item {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.alert {
+  color: #f44336;
 }

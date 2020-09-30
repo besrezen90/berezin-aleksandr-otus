@@ -11,7 +11,9 @@ block content
                         a(href="#register") Регистрация
             .col.s6.offset-s3#login
                 h1 Войти в платформу
-                form(action="/auth/login", method="post")
+                if loginError
+                    p.alert= loginError
+                form(action="/api/auth/login", method="post")
                     .input-field
                         input(type="email", required, name="email").validate#email
                         label(for="email") Email
@@ -23,7 +25,9 @@ block content
                     button(type="submit").btn.btn-primary Войти
             .col.s6.offset-s3#register
                 h1 Создать аккаунт
-                form(action="/auth/register", method="post")
+                if registerError
+                    p.alert= registerError
+                form(action="/api/auth/register", method="post")
                     .input-field
                         input(type="email", required, name="email").validate#email
                         label(for="email") Email
