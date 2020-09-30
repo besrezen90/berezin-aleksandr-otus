@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  server:
+    container_name: server
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - 3000:3000
+    volumes:
+      - ./src:/app/src
+      - /usr/src/app/node_modules
+    depends_on:
+      - mongo
+    # links:
+    #   - mongo
+  mongo:
+    container_name: mongo
+    image: mongo:latest
+    volumes:
+      - /data/db/mongo
