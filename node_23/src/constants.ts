@@ -1,0 +1,3 @@
+export const DATABASE_PROVIDER = 'SEQUELIZE';
+
+export const USER_PROVIDER = 'USER_REPOSITORY';

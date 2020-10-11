@@ -5,12 +5,16 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { IUserAuth } from './auth.interfaces';
 import { UserAuthDto } from './dto/user.auth.dto';
+import { CreateUserDto } from 'src/user/user.dto';
+import { BasicStateEnum, UserGenderEnum } from 'src/types';
+import { UserService } from 'src/user/user.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectModel('User') private userModel: Model<IUserAuth>,
-    private readonly jwtService: JwtService, // private readonly userService: UserService,
+    private readonly jwtService: JwtService,
+    private readonly userService: UserService,
   ) {}
 
   async signUp(user: IUserAuth) {
@@ -24,7 +28,16 @@ export class AuthService {
     });
 
     try {
-      await newUser.save();
+      const user = await newUser.save();
+      const newUserInfo: CreateUserDto = {
+        firstName: 'Name',
+        lastName: 'LastName',
+        gender: UserGenderEnum.NONE,
+        state: BasicStateEnum.ACTIVE,
+        username: user.username,
+      };
+
+      await this.userService.create(newUserInfo);
 
       return true;
     } catch (error) {

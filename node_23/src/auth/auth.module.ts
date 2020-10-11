@@ -7,6 +7,7 @@ import { UserSchema } from './schemas/user.schema';
 import { JwtStrategy } from './strategies/jwt-auth.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
 import { AuthController } from './auth.controller';
+import { UserModule } from 'src/user/user.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { AuthController } from './auth.controller';
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '10h' },
     }),
+    UserModule,
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],
   controllers: [AuthController],

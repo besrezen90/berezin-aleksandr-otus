@@ -6,6 +6,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
+import { DatabaseModule } from './database/database.module';
+import { UserModule } from './user/user.module';
 
 const environment = process.env.NODE_ENV || 'development';
 
@@ -21,6 +23,8 @@ const environment = process.env.NODE_ENV || 'development';
       useCreateIndex: true,
     }),
     AuthModule,
+    DatabaseModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
