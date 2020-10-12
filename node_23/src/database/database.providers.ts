@@ -1,5 +1,7 @@
 import { Sequelize } from 'sequelize-typescript';
+import { Author } from 'src/author/author.entity';
 import { DATABASE_PROVIDER } from 'src/constants';
+import { Movie } from 'src/movie/movie.entity';
 import { User } from 'src/user/user.entity';
 
 export const databaseProviders = [
@@ -9,13 +11,13 @@ export const databaseProviders = [
       const sequelize = new Sequelize({
         dialect: 'postgres',
         host: '127.0.0.1',
-        port: 3001,
+        port: 35432,
         username: 'dbcore',
         password: 'dbcore',
         database: 'node_23',
-        logging: false,
+        logging: true,
       });
-      sequelize.addModels([User]);
+      sequelize.addModels([User, Author, Movie]);
       await sequelize.sync();
       return sequelize;
     },

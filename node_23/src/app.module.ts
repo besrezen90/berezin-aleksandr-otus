@@ -8,6 +8,8 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { DatabaseModule } from './database/database.module';
 import { UserModule } from './user/user.module';
+import { AuthorModule } from './author/author.module';
+import { MovieModule } from './movie/movie.module';
 
 const environment = process.env.NODE_ENV || 'development';
 
@@ -25,6 +27,8 @@ const environment = process.env.NODE_ENV || 'development';
     AuthModule,
     DatabaseModule,
     UserModule,
+    AuthorModule,
+    MovieModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -10,21 +10,21 @@ services:
   #     - 3000:3000
   #   volumes:
   #     - ./src:/app/src
-  #     - /usr/src/app/node_modules
+  #     - /app/node_modules
   #   depends_on:
   #     - mongo
   #     - postgres
-  #   networks:
-  #     - app-network
+  # networks:
+  #   - app-network
   mongo:
     container_name: mongo
     image: mongo:latest
     volumes:
       - /data/db/mongo
+    ports:
+      - 3001:27017
     # networks:
     #   - app-network
-    ports:
-      - 3002:27017
   postgres:
     container_name: postgres
     image: postgres:latest
@@ -37,7 +37,7 @@ services:
     # networks:
     #   - app-network
     ports:
-      - 3001:5432
+      - 35432:5432
 #Docker Networks
 # networks:
 #   app-network:
