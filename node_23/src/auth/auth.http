@@ -2,8 +2,8 @@ POST http://localhost:3000/api/auth/signup HTTP/1.1
 content-type: application/json
 
 {
-    "username": "test9",
-    "password": "testtest9"
+    "username": "test10",
+    "password": "testtest10"
 }
 
 ###
