@@ -8,14 +8,17 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CreateAuthorDto, UpdateAuthorDto } from './author.dto';
 import { AuthorService } from './author.service';
 
 @UsePipes(ValidationPipe)
 @Controller('api/author')
+@UseGuards(JwtAuthGuard)
 export class AuthorController {
   constructor(private readonly authorService: AuthorService) {}
   @Get()

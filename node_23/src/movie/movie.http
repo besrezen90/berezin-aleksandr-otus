@@ -1,5 +1,6 @@
 # Get By authorId
 GET  http://localhost:3000/api/movie?authorId=4 HTTP/1.1
+Authorization: Bearer accessToken
 
 ###
 

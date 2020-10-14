@@ -8,12 +8,15 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CreateMovieDto, UpdateMovieDto } from './movie.dto';
 import { MovieService } from './movie.service';
 
+@UseGuards(JwtAuthGuard)
 @UsePipes(ValidationPipe)
 @Controller('api/movie')
 export class MovieController {
