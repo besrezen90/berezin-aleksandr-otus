@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
   Query,
@@ -23,7 +24,7 @@ export class AuthorController {
   }
 
   @Get(':id')
-  async getAuthor(@Param('id') id: number) {
+  async getAuthor(@Param('id', ParseIntPipe) id: number) {
     return await this.authorService.getAuthor(id);
   }
 
@@ -38,7 +39,7 @@ export class AuthorController {
   }
 
   @Delete(':id')
-  async deleteAuthor(@Param('id') id: number) {
+  async deleteAuthor(@Param('id', ParseIntPipe) id: number) {
     return await this.authorService.deleteAuthor(id);
   }
 }
