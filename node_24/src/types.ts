@@ -21,3 +21,8 @@ export enum BasicStateEnum {
   INACTIVE = 'INACTIVE',
   DELETED = 'DELETED',
 }
+
+export interface IAuthUser {
+  _id: string;
+  username: string;
+}

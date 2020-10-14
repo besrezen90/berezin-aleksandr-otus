@@ -10,6 +10,8 @@ import { DatabaseModule } from './database/database.module';
 import { UserModule } from './user/user.module';
 import { AuthorModule } from './author/author.module';
 import { MovieModule } from './movie/movie.module';
+import { GraphQLModule } from '@nestjs/graphql';
+import { join } from 'path';
 
 const environment = process.env.NODE_ENV || 'development';
 
@@ -23,6 +25,12 @@ const environment = process.env.NODE_ENV || 'development';
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
+    }),
+    GraphQLModule.forRoot({
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      debug: false,
+      playground: true,
+      context: ({ req }) => ({ req }),
     }),
     AuthModule,
     DatabaseModule,

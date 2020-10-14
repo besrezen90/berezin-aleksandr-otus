@@ -14,8 +14,8 @@ export const databaseProviders = [
         port: 35432,
         username: 'dbcore',
         password: 'dbcore',
-        database: 'node_23',
-        logging: true,
+        database: 'node_24',
+        logging: false,
       });
       sequelize.addModels([User, Author, Movie]);
       await sequelize.sync();
