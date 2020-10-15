@@ -1,0 +1,15 @@
+extends index
+
+block content
+    h1= title
+    form(action="/api/course/add", method="post")
+        .input-field.col.s6
+            input(type="text" name="title" required)#title.validate
+            label(for="title") Название курса
+        .input-field.col.s6
+            input(type="text" name="description" required)#description.validate
+            label(for="description") Описание курса
+        .input-field.col.s6
+            input(type="text" name="url" required)#url.validate
+            label(for="url") Ссылка на логотип
+        button(type="submit").btn.btn-primary Создать

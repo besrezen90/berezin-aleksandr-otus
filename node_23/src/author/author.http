@@ -1,0 +1,31 @@
+GET  http://localhost:3000/api/author HTTP/1.1
+
+###
+GET  http://localhost:3000/api/author/3 HTTP/1.1
+
+###
+
+POST http://localhost:3000/api/author HTTP/1.1
+content-type: application/json
+
+{
+    "firstName": "Стивен",
+    "lastName": "Содерберг",
+    "gender": "MALE"
+}
+
+###
+
+PUT http://localhost:3000/api/author HTTP/1.1
+content-type: application/json
+
+{
+    "id": 5,
+    "firstName": "Стивен",
+    "lastName": "Спилберг",
+    "gender": "MALE"
+}
+
+###
+
+DELETE http://localhost:3000/api/author/7 HTTP/1.1

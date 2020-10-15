@@ -1,0 +1,47 @@
+extends index
+
+block content
+    .auth
+        .row
+            .col.s12
+                ul.tabs
+                    li.tab.col.s6
+                        a.active(href="#login") Войти
+                    li.tab.col.s6
+                        a(href="#register") Регистрация
+            .col.s6.offset-s3#login
+                h1 Войти в платформу
+                if loginError
+                    p.alert= loginError
+                form(action="/api/auth/login", method="post")
+                    .input-field
+                        input(type="email", required, name="email").validate#email
+                        label(for="email") Email
+                        span.helper-text(data-error="Введите email")
+                    .input-field
+                        input(type="password", required, name="password").validate#password
+                        label(for="password") Пароль
+                        span.helper-text(data-error="Введите пароль")
+                    button(type="submit").btn.btn-primary Войти
+            .col.s6.offset-s3#register
+                h1 Создать аккаунт
+                if registerError
+                    p.alert= registerError
+                form(action="/api/auth/register", method="post")
+                    .input-field
+                        input(type="email", required, name="email").validate#email
+                        label(for="email") Email
+                        span.helper-text(data-error="Введите email")
+                    .input-field
+                        input(type="password", required, name="password").validate#password
+                        label(for="password") Пароль
+                        span.helper-text(data-error="Введите пароль")
+                    .input-field
+                        input(type="password", required, name="confirm").validate#confirm
+                        label(for="confirm") Повторите пароль
+                        span.helper-text(data-error="Введите пароль")
+                    .input-field
+                        input(type="text", required, name="name").validate#name
+                        label(for="name") Введите имя
+                        span.helper-text(data-error="Введите имя")
+                    button(type="submit").btn.btn-primary Создать аккаунт

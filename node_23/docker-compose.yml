@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  # server:
+  #   container_name: server
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.dev
+  #   ports:
+  #     - 3000:3000
+  #   volumes:
+  #     - ./src:/app/src
+  #     - /app/node_modules
+  #   depends_on:
+  #     - mongo
+  #     - postgres
+  # networks:
+  #   - app-network
+  mongo:
+    container_name: mongo
+    image: mongo:latest
+    volumes:
+      - /data/db/mongo
+    ports:
+      - 3001:27017
+    # networks:
+    #   - app-network
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    volumes:
+      - /data/db/postgres
+    environment:
+      POSTGRES_USER: dbcore
+      POSTGRES_PASSWORD: dbcore
+      POSTGRES_DB: node_23
+    # networks:
+    #   - app-network
+    ports:
+      - 35432:5432
+#Docker Networks
+# networks:
+#   app-network:
+#     driver: bridge

@@ -1,0 +1,15 @@
+nav.header
+    div.nav-wrapper
+        ul#nav-mobile.right.hide-on-med-and-down.nav
+            li.nav-link
+                a(href="/") Курсы
+            if isAuth
+                li.nav-link
+                    a(href="/course/add") Добавить курс
+            li.nav-link
+                if isAuth
+                    a(href="/api/auth/logout") Выход
+                else
+                    a(href="/auth") Вход
+
+            
