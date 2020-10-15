@@ -3,7 +3,6 @@ import {
   Controller,
   Delete,
   Get,
-  ParseIntPipe,
   Put,
   Req,
   UseGuards,
@@ -25,8 +24,8 @@ export class UserController {
   }
 
   @Delete()
-  async deleteUser(@Body('id', ParseIntPipe) id: number) {
-    return await this.userService.delete(id);
+  async deleteUser(@Req() req: any) {
+    return await this.userService.delete(req.user.username);
   }
 
   @Put()

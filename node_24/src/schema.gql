@@ -26,6 +26,116 @@ enum BasicStateEnum {
   DELETED
 }
 
+type MovieAuthor {
+  id: Int!
+  firstName: String!
+  lastName: String!
+  gender: UserGenderEnum!
+  state: BasicStateEnum!
+  createdAt: String!
+  updatedAt: String!
+  deletedAt: String
+}
+
+type Movie {
+  id: Int!
+  title: String!
+  createdAt: String!
+  updatedAt: String!
+  deletedAt: String
+  authorId: Int!
+}
+
+type SingleMovie {
+  id: Int!
+  title: String!
+  createdAt: String!
+  updatedAt: String!
+  deletedAt: String
+  authorId: Int!
+  author: MovieAuthor!
+}
+
+type Movies {
+  count: Int!
+  rows: [Movie!]!
+}
+
+type Author {
+  id: Int!
+  firstName: String!
+  lastName: String!
+  gender: UserGenderEnum!
+  state: BasicStateEnum!
+  createdAt: String!
+  updatedAt: String!
+  deletedAt: String
+  movies: [Movie!]!
+}
+
+type Authors {
+  count: Int!
+  rows: [Author!]!
+}
+
 type Query {
   user: User!
+  authors(filter: AuthorsFilterInput): Authors!
+  author(id: Int!): Author!
+  movies(authorId: Int!): Movies!
+  movie(movieId: Int!): SingleMovie!
+}
+
+input AuthorsFilterInput {
+  limit: Int = 100
+  offset: Int = 0
+  id: Int
+  firstName: String
+  lastName: String
+  gender: UserGenderEnum
+  state: BasicStateEnum
+  createdAt: String
+  updatedAt: String
+}
+
+type Mutation {
+  updateUser(userInfo: UpdateUserInput!): User!
+  deleteUser: User!
+  updateAuthor(authorInfo: UpdateAuthorInput!): Author!
+  createAuthor(authorInfo: CreateAuthorInput!): Author!
+  deleteAuthor(id: Int!): Author!
+  deleteMovie(movieId: Int!): SingleMovie!
+  createMovie(movie: CreateMovieInput!): Movie!
+  updateMovie(movie: UpdateMovieInput!): Movie!
+}
+
+input UpdateUserInput {
+  firstName: String
+  lastName: String
+  gender: UserGenderEnum
+  state: BasicStateEnum
+}
+
+input UpdateAuthorInput {
+  id: Int!
+  firstName: String
+  lastName: String
+  gender: UserGenderEnum
+}
+
+input CreateAuthorInput {
+  firstName: String!
+  lastName: String!
+  gender: UserGenderEnum!
+}
+
+input CreateMovieInput {
+  authorId: Int!
+  title: String!
+}
+
+input UpdateMovieInput {
+  id: Int!
+  authorId: Int
+  title: String
 }

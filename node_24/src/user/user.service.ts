@@ -20,8 +20,10 @@ export class UserService {
   }
 
   @CustomCatch
-  async delete(id: number): Promise<User> {
-    const user: User = await this.userRepository.findByPk(id);
+  async delete(username: string): Promise<User> {
+    const user: User = await this.userRepository.findOne({
+      where: { username },
+    });
     await user.update({ state: BasicStateEnum.DELETED });
     await user.destroy();
     return user;

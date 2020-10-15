@@ -16,8 +16,8 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CreateAuthorDto, UpdateAuthorDto } from './author.dto';
 import { AuthorService } from './author.service';
 
-@UsePipes(ValidationPipe)
 @Controller('api/author')
+@UsePipes(ValidationPipe)
 @UseGuards(JwtAuthGuard)
 export class AuthorController {
   constructor(private readonly authorService: AuthorService) {}

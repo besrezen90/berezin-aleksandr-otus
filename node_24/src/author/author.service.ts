@@ -5,6 +5,7 @@ import { Movie } from 'src/movie/movie.entity';
 import { BasicStateEnum } from 'src/types';
 import { CreateAuthorDto, UpdateAuthorDto } from './author.dto';
 import { Author } from './author.entity';
+import { AuthorsFilterInput } from './author.model';
 
 @Injectable()
 export class AuthorService {
@@ -13,12 +14,11 @@ export class AuthorService {
   ) {}
 
   @CustomCatch
-  async getAuthors(params: { [key: string]: string }) {
-    const {
-      limit = DEFAULT_VALUES.DB_DEFAULT_LIMIT,
-      offset = DEFAULT_VALUES.DB_OFFSET,
-      ...where
-    } = params;
+  async getAuthors({
+    limit = DEFAULT_VALUES.DB_DEFAULT_LIMIT,
+    offset = DEFAULT_VALUES.DB_OFFSET,
+    ...where
+  }) {
     let currentLimit = +limit;
 
     if (currentLimit > DEFAULT_VALUES.DB_MAX_LIMIT) {

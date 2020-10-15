@@ -1,4 +1,10 @@
-import { IsIn, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import {
+  IsIn,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { UserGenderEnum } from 'src/types';
 
 export class CreateAuthorDto {
@@ -15,15 +21,14 @@ export class CreateAuthorDto {
 
 export class UpdateAuthorDto {
   @IsNumber()
-  @IsNotEmpty()
   id: number;
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   firstName: string;
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
   lastName: string;
-  @IsString()
+  @IsOptional()
   @IsIn([...Object.values(UserGenderEnum)])
   gender: UserGenderEnum;
 }

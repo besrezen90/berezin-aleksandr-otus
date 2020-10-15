@@ -1,19 +1,19 @@
 # Get By authorId
 GET  http://localhost:3000/api/movie?authorId=2 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxIiwic3ViIjoiNWY4NzQ5Y2UxYmJkM2QzYzdjYWRmYjZjIiwiaWF0IjoxNjAyNzAxODEwLCJleHAiOjE2MDI3Mzc4MTB9.CgcDYUG4ep4NpGI-XPpO6Mdr2wbmVBoMD94Nw67HZxY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxIiwic3ViIjoiNWY4NzQ5Y2UxYmJkM2QzYzdjYWRmYjZjIiwiaWF0IjoxNjAyNzc5ODYwLCJleHAiOjE2MDI4MTU4NjB9.z2KgfroBsNJusjIEAEZW1W4F3ulhONmUp5zB6wTRcYg
 
 ###
 
 # Get By movieId
 GET  http://localhost:3000/api/movie/4 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxIiwic3ViIjoiNWY4NzQ5Y2UxYmJkM2QzYzdjYWRmYjZjIiwiaWF0IjoxNjAyNzAxODEwLCJleHAiOjE2MDI3Mzc4MTB9.CgcDYUG4ep4NpGI-XPpO6Mdr2wbmVBoMD94Nw67HZxY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxIiwic3ViIjoiNWY4NzQ5Y2UxYmJkM2QzYzdjYWRmYjZjIiwiaWF0IjoxNjAyNzc5ODYwLCJleHAiOjE2MDI4MTU4NjB9.z2KgfroBsNJusjIEAEZW1W4F3ulhONmUp5zB6wTRcYg
 
 ###
 
 # Create Movie
 POST http://localhost:3000/api/movie HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxIiwic3ViIjoiNWY4NzQ5Y2UxYmJkM2QzYzdjYWRmYjZjIiwiaWF0IjoxNjAyNzAxODEwLCJleHAiOjE2MDI3Mzc4MTB9.CgcDYUG4ep4NpGI-XPpO6Mdr2wbmVBoMD94Nw67HZxY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxIiwic3ViIjoiNWY4NzQ5Y2UxYmJkM2QzYzdjYWRmYjZjIiwiaWF0IjoxNjAyNzc5ODYwLCJleHAiOjE2MDI4MTU4NjB9.z2KgfroBsNJusjIEAEZW1W4F3ulhONmUp5zB6wTRcYg
 
 {
     "authorId": 2,
@@ -25,6 +25,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc
 # Update Movie
 PUT http://localhost:3000/api/movie HTTP/1.1
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxIiwic3ViIjoiNWY4NzQ5Y2UxYmJkM2QzYzdjYWRmYjZjIiwiaWF0IjoxNjAyNzc5ODYwLCJleHAiOjE2MDI4MTU4NjB9.z2KgfroBsNJusjIEAEZW1W4F3ulhONmUp5zB6wTRcYg
 
 {
     "authorId": 4,
@@ -36,3 +37,4 @@ content-type: application/json
 # Delete
 DELETE  http://localhost:3000/api/movie/5 HTTP/1.1
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxIiwic3ViIjoiNWY4NzQ5Y2UxYmJkM2QzYzdjYWRmYjZjIiwiaWF0IjoxNjAyNzc5ODYwLCJleHAiOjE2MDI4MTU4NjB9.z2KgfroBsNJusjIEAEZW1W4F3ulhONmUp5zB6wTRcYg
