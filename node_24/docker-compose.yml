@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  mongo:
+    container_name: mongo_node_24
+    image: mongo:latest
+    volumes:
+      - /data/db/mongo
+    ports:
+      - 3001:27017
+
+  postgres:
+    container_name: postgres_node_24
+    image: postgres:latest
+    volumes:
+      - /data/db/postgres
+    environment:
+      POSTGRES_USER: dbcore
+      POSTGRES_PASSWORD: dbcore
+      POSTGRES_DB: node_24
+
+    ports:
+      - 35432:5432

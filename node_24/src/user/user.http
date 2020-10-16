@@ -1,0 +1,25 @@
+GET http://localhost:3000/api/user HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxIiwic3ViIjoiNWY4NzQ5Y2UxYmJkM2QzYzdjYWRmYjZjIiwiaWF0IjoxNjAyNzAxODEwLCJleHAiOjE2MDI3Mzc4MTB9.CgcDYUG4ep4NpGI-XPpO6Mdr2wbmVBoMD94Nw67HZxY
+
+###
+
+DELETE   http://localhost:3000/api/user HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1
+}
+
+###
+
+PUT   http://localhost:3000/api/user HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxIiwic3ViIjoiNWY4NzQ5Y2UxYmJkM2QzYzdjYWRmYjZjIiwiaWF0IjoxNjAyNzAxODEwLCJleHAiOjE2MDI3Mzc4MTB9.CgcDYUG4ep4NpGI-XPpO6Mdr2wbmVBoMD94Nw67HZxY
+
+{
+    "firstName": "Aleksandr",
+    "lastName": "Berezin",
+    "gender": "MALE"
+}
+
+###
