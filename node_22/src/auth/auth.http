@@ -1,0 +1,23 @@
+POST http://localhost:3000/auth/signin HTTP/1.1
+content-type: application/json
+
+{
+    "username": "test",
+    "password": "testtest"
+}
+
+###
+# curl -X POST http://localhost:3000/auth/signin -d '{"username": "test", "password": "testtest"}' -H "Content-Type: application/json"
+###
+
+POST http://localhost:3000/auth/signup HTTP/1.1
+content-type: application/json
+
+{
+    "username": "test6",
+    "password": "testtest6"
+}
+
+###
+
+GET http://localhost:3000/auth/me HTTP/1.1
