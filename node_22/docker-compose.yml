@@ -1,6 +1,28 @@
-mongo:
-  image: mongo:latest
-  volumes:
-    - /data/db/mongo
-  ports:
-    - '27022:27017'
+version: '3'
+services:
+  mongo_node22:
+    container_name: mongo_node22
+    image: 'mongo:latest'
+    ports:
+      - '3001:27017'
+    volumes:
+      - /data/db/mongo
+    networks:
+      - app-network
+  nestjs-server:
+    container_name: nestjs-server
+    ports:
+      - '3000:3000'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - './src:/app/src'
+      - /app/node_modules
+    links:
+      - mongo_node22
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
